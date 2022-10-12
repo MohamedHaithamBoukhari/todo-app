@@ -1,5 +1,6 @@
 :root {
-    font-family: "Josefin",sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    color: hsl(235, 19%, 35%);
 }
 * {
     box-sizing: border-box;
@@ -21,6 +22,9 @@ main {
     align-items: center;
     gap: 2.3rem;
 }
+form {
+    position: relative;
+}
 .logo-theme {
     width: 35rem;
     display: flex;
@@ -37,27 +41,69 @@ main {
     cursor: pointer;
 }
 
-.mai-section {
+.main-section {
     width: 35rem;
     height: 50rem;
 }
 #new-todo {
+    color: hsl(235, 19%, 35%);
     font-size: 1.2rem;
     width: 100%;
-    height: 3.8rem;
-    border-radius: 7px;
+    height: 4rem;
+    border-radius: 6px;
     padding: 0 4rem 3px 4rem;
-    background: url("images/icon-cross.svg") no-repeat white 1.44rem 1.32rem;
+    background: white;
     margin-bottom: 1rem;
 }
 #new-todo:focus {
     outline: none;
 }
-
+.checkmark {
+    position: absolute;
+    display: block;
+    top: 17px;
+    left: 18px;
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 1.5px solid hsla(234, 11%, 52%,50%);
+    border-radius: 50%;
+}
+.list .checkmark {
+    cursor: pointer;
+}
+.cross {
+    height: 1.2rem;
+    position: absolute;
+    top: 22px;
+    right: 1.7rem;
+    display: none;
+}
 .list {
     width: 100%;
-    height: 30rem;
+    height: 27rem;
     background-color: white;
-    border-radius: 7px;
+    border-radius: 6px;
     box-shadow: 0 4px 20px 15px hsla(235, 21%, 11%,8%);
 }
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 4rem;
+    padding: 0 4rem;
+    border-bottom: 2px solid hsl(236, 33%, 92%);
+}
+.container:hover .cross {
+    display: block;
+}
+.container:hover .checkmark{
+    border-color: hsl(235, 19%, 35%);
+}
+.container input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
