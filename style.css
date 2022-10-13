@@ -1,10 +1,9 @@
 :root {
     font-family: 'Josefin Sans', sans-serif;
-    color: hsl(235, 19%, 35%);
+    color: hsl(236, 9%, 61%);
 }
 * {
     box-sizing: border-box;
-    text-decoration: none;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -58,6 +57,7 @@ form {
 #new-todo:focus {
     outline: none;
 }
+
 .checkmark {
     position: absolute;
     display: block;
@@ -65,8 +65,13 @@ form {
     left: 18px;
     height: 1.5rem;
     width: 1.5rem;
-    border: 1.5px solid hsla(234, 11%, 52%,50%);
+    border: 1.5px solid hsl(233, 11%, 84%);
     border-radius: 50%;
+}
+.check {
+    position: absolute;
+    top: 32%;
+    left: 29%;
 }
 .list .checkmark {
     cursor: pointer;
@@ -77,6 +82,7 @@ form {
     top: 22px;
     right: 1.7rem;
     display: none;
+    cursor: pointer;
 }
 .list {
     width: 100%;
@@ -86,6 +92,7 @@ form {
     box-shadow: 0 4px 20px 15px hsla(235, 21%, 11%,8%);
 }
 .container {
+    color: hsl(235, 19%, 35%);
     position: relative;
     display: flex;
     align-items: center;
@@ -102,8 +109,40 @@ form {
     border-color: hsl(235, 19%, 35%);
 }
 .container input {
+    position: absolute;
     opacity: 0;
     height: 0;
     width: 0;
 }
+.container input[type="checkbox"]:checked ~ .checkmark {
+    background-image: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+}
+.container input[type="checkbox"]:checked ~ .text {
+    color: hsl(233, 11%, 84%);
+    text-decoration: line-through hsl(233, 11%, 84%);
+}
 
+.control {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+.filter span {
+    display: inline-block;
+    margin: 0 7px;
+    cursor: pointer;
+}
+.filter span:not(.active):hover {
+    color: hsl(235, 19%, 35%);
+}
+.filter span.active {
+    color:hsl(220, 98%, 61%);
+}
+.clear {
+    cursor: pointer;
+}
+.clear:hover {
+    color: hsl(235, 19%, 35%);
+}
