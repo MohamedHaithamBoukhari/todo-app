@@ -38,3 +38,50 @@ function darkMode() {
   let clear = document.querySelector('.clear');
   clear.classList.toggle('dark-clear');
 }
+
+
+let filter = document.querySelector(".filter");
+let tasks = document.querySelectorAll('.list input');
+
+filter.onclick =function(event) {
+  let target = event.target;
+  let current = document.querySelector(".active");
+  current.classList.remove("active");
+  target.classList.add("active");
+
+  if(target.innerHTML === "Completed"){
+    showCompleted();
+  } else if(target.innerHTML === "All") {
+    showAll();
+  } else if(target.innerHTML === "Active") {
+    showActive();
+  }
+}
+
+function showCompleted() {
+  for(let task of tasks) {
+      task.closest('li').hidden = task.checked === false;
+  }
+}
+
+function showAll() {
+  for(let task of tasks) {
+    task.closest('li').hidden = false;
+  }
+}
+
+function showActive() {
+  for(let task of tasks) {
+      task.closest('li').hidden = task.checked === true;
+  }
+}
+
+let clear = document.querySelector(".clear");
+
+clear.onclick = function() {
+  for(let task of tasks) {
+    if(task.checked === true){
+      task.closest("li").remove();
+    }
+  }
+}
