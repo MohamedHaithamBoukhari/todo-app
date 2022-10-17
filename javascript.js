@@ -77,11 +77,38 @@ function showActive() {
 }
 
 let clear = document.querySelector(".clear");
-
 clear.onclick = function() {
   for(let task of tasks) {
     if(task.checked === true){
       task.closest("li").remove();
     }
   }
+}
+
+
+let list = document.querySelector(".list");
+list.onclick = function(event) {
+  let target = event.target;
+  if(target.className !== 'cross') return;
+  target.closest("li").remove();
+}
+
+let todoInput = document.querySelector(".new-todo");
+todoInput.onkeypress = function(event) {
+  if(event.key==="Enter"){
+    event.preventDefault();
+    createTask(this.value);
+    this.value = '';
+  }
+}
+
+function createTask(value) {
+  let li = document.createElement("li");
+  li.innerHTML = `<label class="container">
+                    <input type="checkbox" >
+                    <span class="text">${value}</span>
+                    <span class="checkmark"><img src="images/icon-check.svg" class="check"></span>
+                    <img src="images/icon-cross.svg" class="cross">
+            </label>`;
+  list.firstElementChild.append(li);
 }
