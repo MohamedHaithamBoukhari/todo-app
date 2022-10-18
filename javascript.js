@@ -41,7 +41,7 @@ function darkMode() {
 
 
 let filter = document.querySelector(".filter");
-let tasks = document.querySelectorAll('.list input');
+let tasks = document.getElementsByClassName('hidden_input');
 
 filter.onclick =function(event) {
   let target = event.target;
@@ -105,7 +105,7 @@ todoInput.onkeypress = function(event) {
 function createTask(value) {
   let li = document.createElement("li");
   li.innerHTML = `<label class="container">
-                    <input type="checkbox" >
+                    <input type="checkbox" class="hidden_input">
                     <span class="text">${value}</span>
                     <span class="checkmark"><img src="images/icon-check.svg" class="check"></span>
                     <img src="images/icon-cross.svg" class="cross">
