@@ -10,7 +10,7 @@
     border: none;
 }
 body {
-    background-color: white;
+    background-color: hsl(0, 0%, 92%);
 }
 main {
     width: 100%;
@@ -44,8 +44,11 @@ form {
 }
 
 .main-section {
+    display: flex;
+    flex-direction: column;
     width: 35rem;
-    height: 50rem;
+    box-shadow: 0 4px 20px 15px hsla(235, 21%, 11%,8%);
+    border-radius: 10px;
 }
 .new-todo {
     color: hsl(235, 19%, 35%);
@@ -93,8 +96,8 @@ form {
     width: 100%;
     height: 27rem;
     background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 4px 20px 15px hsla(235, 21%, 11%,8%);
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
 }
 .container {
     color: hsl(235, 19%, 35%);
@@ -129,15 +132,14 @@ form {
 }
 
 .control {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    background-color: white;
     height: 3rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
+    border-radius: 0 0 6px 6px;
 }
 .filter span {
     display: inline-block;
@@ -156,9 +158,17 @@ form {
 .clear:hover {
     color: hsl(235, 19%, 35%);
 }
-
+.mobile {
+    display: none;
+    background-color: white;
+    height: 3.2rem;
+    padding: 0 1.5rem;
+    width: 90%;
+    border-radius: 6px;
+}
 
 /*======== Dark mode =========*/
+
 
 body.dark {
     background-color: hsl(235, 21%, 11%);
@@ -167,9 +177,11 @@ body.dark {
     color: hsl(234, 39%, 85%);
     background-color: hsl(235, 24%, 19%);
 }
+.dark-main-section {
+    box-shadow: 0 40px 40px -15px hsla(0,0%,0%,50%);
+}
 .dark-list {
     background-color: hsl(235, 24%, 19%);
-    box-shadow: 0 40px 40px -15px hsla(0,0%,0%,50%);
 }
 .dark-container {
     color: hsl(234, 39%, 85%);
@@ -191,4 +203,55 @@ body.dark {
 .dark-container input[type="checkbox"]:checked ~ .text {
     color: hsl(235, 19%, 35%);
     text-decoration: line-through hsl(235, 19%, 35%);
+}
+.dark-control {
+    background-color: hsl(235, 24%, 19%);
+}
+.dark-filter-mobile {
+    background-color: hsl(235, 24%, 19%);
+}
+
+
+/*========== Media Queries ============*/
+
+@media screen and (max-width:600px) {
+    main {
+        align-items: center;
+    }
+    .main-section {
+        width: 90%;
+    }
+    .logo-theme {
+        width: 90%;
+        margin-top: 1.5rem;
+        align-items: center;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .toggle {
+        width: 1.2rem;
+    }
+    .new-todo {
+        height: 3.2rem;
+        font-size: 14px;
+    }
+    .checkmark {
+        top: 12px;
+    }
+    .container {
+        height: 3.2rem;
+        font-size: 14px;
+    }
+    .pc {
+        display: none;
+    }
+    .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .control {
+        font-size: 14px;
+    }
 }
