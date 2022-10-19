@@ -1,11 +1,14 @@
 let filter = document.querySelector(".filter");
+let mobileFilter = document.querySelector(".mobile");
 let tasks = document.getElementsByClassName('hidden_input');
 
-filter.onclick =function(event) {
+mobileFilter.onclick = filter.onclick = function(event) {
   let target = event.target;
-  let current = document.querySelector(".active");
-  current.classList.remove("active");
-  target.classList.add("active");
+  let currents = document.querySelectorAll(".active");
+  for(let current of currents){
+    current.classList.remove("active");
+    target.classList.add("active");
+  }
 
   if(target.innerHTML === "Completed"){
     showCompleted();
