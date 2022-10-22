@@ -27,6 +27,9 @@ main {
 form {
     position: relative;
 }
+ul{
+    height: 100%;
+}
 .logo-theme {
     width: 35rem;
     display: flex;
@@ -100,6 +103,7 @@ form {
     overflow: hidden;
 }
 .container {
+    cursor: move;
     color: hsl(235, 19%, 35%);
     position: relative;
     display: flex;
@@ -254,4 +258,11 @@ body.dark {
     .control {
         font-size: 14px;
     }
+}
+
+/*=========== drag and drop =============== */
+.dragging {
+}
+.dragdrop {
+    font-size: 13px;
 }

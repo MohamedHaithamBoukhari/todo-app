@@ -66,11 +66,19 @@ todoInput.onkeypress = function(event) {
 function createTask(value) {
   let li = document.createElement("li");
   li.innerHTML = `<label class="container">
-                    <input type="checkbox" class="hidden_input">
-                    <span class="text">${value}</span>
-                    <span class="checkmark"><img src="images/icon-check.svg" class="check"></span>
-                    <img src="images/icon-cross.svg" class="cross">
+              <input type="checkbox" class="hidden_input">
+              <span class="text">${value}</span>
+              <span class="checkmark"><img src="images/icon-check.svg" class="check"></span>
+              <img src="images/icon-cross.svg" class="cross">
             </label>`;
+  li.className = "draggable";
+  li.draggable = true;
+  li.addEventListener('dragstart',()=>{
+    li.classList.add('dragging');
+  })
+  li.addEventListener('dragend',()=>{
+    li.classList.remove('dragging');
+  })
   list.firstElementChild.append(li);
 }
 // ======= Dark mode ========== //
@@ -123,4 +131,44 @@ function darkMode() {
   filterMobile.classList.toggle("dark-filter-mobile");
 }
 
+
+// ================= Drag and Drop ==========================
+
+let draggables = document.querySelectorAll(".list li");
+let container = document.querySelector(".list ul");
+
+draggables.forEach(draggable => {
+  draggable.addEventListener('dragstart',()=>{
+    draggable.classList.add('dragging');
+  })
+  draggable.addEventListener('dragend',()=>{
+    draggable.classList.remove('dragging');
+  })
+})
+
+container.addEventListener("dragover",(ev)=>{
+  ev.preventDefault();
+  let draggable = document.querySelector(".dragging");
+  let closestElement = getAfterDrag(container,ev.clientY);
+  if(closestElement == null) {
+    container.append(draggable);
+  }else {
+    container.insertBefore(draggable,closestElement);
+  }
+})
+
+function getAfterDrag(container,y){
+  let draggableElements = [...document.querySelectorAll(".draggable:not(.dragging)")];
+
+  return draggableElements.reduce((closest,child)=> {
+
+    let box =  child.getBoundingClientRect();
+    let offset = y - box.top - child.offsetHeight/2;
+    if(offset < 0 && offset > closest.offset){
+      return {offset:offset,element:child};
+    }else{
+      return closest;
+    }
+  },{offset : Number.NEGATIVE_INFINITY}).element;
+}
 
