@@ -1,3 +1,4 @@
+alert("eeeee")
 let filter = document.querySelector(".filter");
 let mobileFilter = document.querySelector(".mobile");
 let tasks = document.getElementsByClassName('hidden_input');
